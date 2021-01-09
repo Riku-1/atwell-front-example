@@ -1,9 +1,9 @@
-import { TweetDisplay } from "./components/TweetDisplay";
+import { TweetContainer } from "./components/Tweet/TweetContainer";
 
 function App() {
   return (
     <div>
-      <TweetDisplay />
+      <TweetContainer />
     </div>
   );
 }

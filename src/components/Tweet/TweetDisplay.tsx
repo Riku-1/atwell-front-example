@@ -1,7 +1,7 @@
 import React from "react";
 import { Tweet as TweetComponent } from "./Tweet";
-import { Tweet } from "../domain/tweet";
-import { fetchTweets } from "../api";
+import { Tweet } from "../../domain/tweet";
+import { fetchTweets } from "../../api";
 
 type TweetDisplayState = {
   tweetList: Tweet[];

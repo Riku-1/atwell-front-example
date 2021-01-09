@@ -1,5 +1,5 @@
 import React from "react";
-import { Tweet as TweetDomain } from "../domain/tweet";
+import { Tweet as TweetDomain } from "../../domain/tweet";
 import "./Tweet.css";
 
 type TweetProps = {
