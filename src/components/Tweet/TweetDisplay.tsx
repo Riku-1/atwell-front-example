@@ -14,13 +14,15 @@ export class TweetDisplay extends React.Component<{}, TweetDisplayState> {
   }
 
   componentDidMount() {
-    fetchTweets()
+    const now = new Date();
+
+    fetchTweets(now, now)
       .then((res) => {
-        return this.setState({ tweetList: res });
+        console.log(res);
+        this.setState({ tweetList: res });
       })
       .catch((err) => {
         console.log(err);
-        throw new err();
       });
   }
 

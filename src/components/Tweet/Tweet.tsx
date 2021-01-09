@@ -15,7 +15,9 @@ export class Tweet extends React.Component<TweetProps> {
     return (
       <div>
         <div>{this.props.tweet.comment}</div>
-        <div className="created-at">{this.props.tweet.createdAt}</div>
+        <div className="created-at">
+          {this.props.tweet.createdAt.toLocaleString()}
+        </div>
       </div>
     );
   }

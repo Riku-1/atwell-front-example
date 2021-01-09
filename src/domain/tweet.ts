@@ -1,8 +1,8 @@
 export class Tweet {
   comment: string;
-  createdAt: string;
+  createdAt: Date;
 
-  constructor(comment: string, createdAt: string) {
+  constructor(comment: string, createdAt: Date) {
     this.comment = comment;
     this.createdAt = createdAt;
   }
