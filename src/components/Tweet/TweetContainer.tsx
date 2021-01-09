@@ -17,7 +17,9 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
     this.state = { start: new Date(), end: new Date(), tweetList: [] };
   }
   componentDidMount() {
-    this.update();
+    fetchTweets(this.state.start, this.state.end).then((tweetList) => {
+      this.setState({ tweetList: tweetList });
+    });
   }
 
   render() {
@@ -27,6 +29,8 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
           <DatePicker
             start={this.state.start}
             end={this.state.end}
+            onChangeStart={this.setStart}
+            onChangeEnd={this.setEnd}
             onClick={this.update}
           ></DatePicker>
           <TweetDisplay tweetList={this.state.tweetList} />
@@ -35,13 +39,18 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
     );
   }
 
-  update = () => {
-    const start = new Date();
-    const end = new Date();
+  setStart = (start: Date) => {
+    this.setState({ start: start });
+  };
+
+  setEnd = (end: Date) => {
+    this.setState({ end: end });
+  };
+
+  update = (start: Date, end: Date) => {
     fetchTweets(start, end)
-      .then((res) => {
-        console.log(res);
-        this.setState({ start: start, end: end, tweetList: res });
+      .then((tweetList) => {
+        this.setState({ tweetList: tweetList });
       })
       .catch((err) => {
         console.log(err);
