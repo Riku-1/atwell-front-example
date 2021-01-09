@@ -1,3 +1,4 @@
+import { Container } from "@material-ui/core";
 import React from "react";
 import { fetchTweets } from "../../api";
 import { Tweet } from "../../domain/tweet";
@@ -22,12 +23,14 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
   render() {
     return (
       <div>
-        <DatePicker
-          start={this.state.start}
-          end={this.state.end}
-          onClick={this.update}
-        ></DatePicker>
-        <TweetDisplay tweetList={this.state.tweetList} />
+        <Container maxWidth="md">
+          <DatePicker
+            start={this.state.start}
+            end={this.state.end}
+            onClick={this.update}
+          ></DatePicker>
+          <TweetDisplay tweetList={this.state.tweetList} />
+        </Container>
       </div>
     );
   }
