@@ -1,16 +1,36 @@
+import React from "react";
 import { Tweet as TweetComponent } from "./Tweet";
 import { Tweet } from "../domain/tweet";
+import { fetchTweets } from "../api";
 
-const a = new Tweet("aaa", "bbb");
-const b = new Tweet("ccc", "ddd");
-const tweetList = [a, b];
-
-export const TweetDisplay = () => {
-  return (
-    <div>
-      {tweetList.map((tweet, index) => {
-        return <TweetComponent key={index} tweet={tweet}></TweetComponent>;
-      })}
-    </div>
-  );
+type TweetDisplayState = {
+  tweetList: Tweet[];
 };
+
+export class TweetDisplay extends React.Component<{}, TweetDisplayState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = { tweetList: [] };
+  }
+
+  componentDidMount() {
+    fetchTweets()
+      .then((res) => {
+        return this.setState({ tweetList: res });
+      })
+      .catch((err) => {
+        console.log(err);
+        throw new err();
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.tweetList.map((tweet, index) => {
+          return <TweetComponent key={index} tweet={tweet}></TweetComponent>;
+        })}
+      </div>
+    );
+  }
+}
