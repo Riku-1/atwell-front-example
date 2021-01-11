@@ -7,10 +7,6 @@ type TweetProps = {
 };
 
 export class Tweet extends React.Component<TweetProps> {
-  constructor(props: TweetProps) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
