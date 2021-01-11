@@ -1,3 +1,4 @@
+import { BACKEND_HOST, BACKEND_PORT } from "./config";
 import { Tweet } from "./domain/tweet";
 
 const fetchData = async (url: string) => {
@@ -5,17 +6,17 @@ const fetchData = async (url: string) => {
 };
 
 export const fetchTweets = async (start: Date, end: Date) => {
-  //const url = "http://localhost:10000/articles";
-  //fetchData(url)
-  //  .then((res) => {
-  //    console.log(res);
-  //    return res.body;
-  //  })
-  //  .catch((err) => {
-  //    console.log(err);
-  //    throw err;
-  //  });
-  const a = new Tweet("aaa", start);
-  const b = new Tweet("ccc", end);
-  return [a, b];
+  const url = BACKEND_HOST + ":" + BACKEND_PORT + "/tweets";
+  return fetchData(url)
+    .then((res) =>
+      res
+        .json()
+        .then((json: []) =>
+          json.map((tweet) => new Tweet(tweet["Comment"], tweet["CreatedAt"]))
+        )
+    )
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
 };
