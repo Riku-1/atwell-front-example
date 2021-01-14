@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import { Container, Snackbar } from "@material-ui/core";
 import React from "react";
 import { fetchTweets } from "../../api";
 import { Tweet } from "../../domain/tweet";
@@ -9,17 +9,21 @@ type TweetContainerState = {
   start: Date;
   end: Date;
   tweetList: Tweet[];
+  isConnectionError: boolean;
 };
 
 export class TweetContainer extends React.Component<{}, TweetContainerState> {
   constructor(props: {}) {
     super(props);
-    this.state = { start: new Date(), end: new Date(), tweetList: [] };
+    this.state = {
+      start: new Date(),
+      end: new Date(),
+      tweetList: [],
+      isConnectionError: false,
+    };
   }
   componentDidMount() {
-    fetchTweets(this.state.start, this.state.end).then((tweetList) => {
-      this.setState({ tweetList: tweetList });
-    });
+    this.update(this.state.start, this.state.end);
   }
 
   render() {
@@ -34,6 +38,15 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
             onClick={this.update}
           ></DatePicker>
           <TweetDisplay tweetList={this.state.tweetList} />
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            open={this.state.isConnectionError}
+            autoHideDuration={6000}
+            message="Failed to connect to database"
+          />
         </Container>
       </div>
     );
@@ -50,10 +63,10 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
   update = (start: Date, end: Date) => {
     fetchTweets(start, end)
       .then((tweetList) => {
-        this.setState({ tweetList: tweetList });
+        this.setState({ tweetList: tweetList, isConnectionError: false });
       })
       .catch((err) => {
-        console.log(err);
+        this.setState({ tweetList: [], isConnectionError: true });
       });
   };
 }
