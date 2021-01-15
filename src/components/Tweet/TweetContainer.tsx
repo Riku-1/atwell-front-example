@@ -1,4 +1,5 @@
 import { Container, Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import React from "react";
 import { fetchTweets } from "../../api";
 import { Tweet } from "../../domain/tweet";
@@ -40,13 +41,14 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
           <TweetDisplay tweetList={this.state.tweetList} />
           <Snackbar
             anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+              vertical: "top",
+              horizontal: "center",
             }}
             open={this.state.isConnectionError}
             autoHideDuration={6000}
-            message="Failed to connect to database"
-          />
+          >
+            <Alert severity="error">Failed to connect to the database</Alert>
+          </Snackbar>
         </Container>
       </div>
     );
