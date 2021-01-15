@@ -3,7 +3,7 @@ import React from "react";
 import { fetchTweets } from "../../api";
 import { Tweet } from "../../domain/tweet";
 import { DatePicker } from "./DatePicker";
-import { ErrorDisplay } from "./ErrorDisplay";
+import { ErrorDisplay } from "../common/ErrorDisplay";
 import { TweetDisplay } from "./TweetDisplay";
 
 type TweetContainerState = {
@@ -40,7 +40,8 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
           ></DatePicker>
           <TweetDisplay tweetList={this.state.tweetList} />
           <ErrorDisplay
-            isConnectionError={this.state.isConnectionError}
+            isOpen={this.state.isConnectionError}
+            message="Failed to connect to the database"
           ></ErrorDisplay>
         </Container>
       </div>
