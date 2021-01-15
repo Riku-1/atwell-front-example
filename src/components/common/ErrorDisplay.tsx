@@ -5,6 +5,7 @@ import React from "react";
 type ErrorDisplayProps = {
   isOpen: boolean;
   message: string;
+  handleClose: Function;
 };
 
 export class ErrorDisplay extends React.Component<ErrorDisplayProps> {
@@ -18,8 +19,11 @@ export class ErrorDisplay extends React.Component<ErrorDisplayProps> {
           }}
           open={this.props.isOpen}
           autoHideDuration={6000}
+          onClose={() => this.props.handleClose()}
         >
-          <Alert severity="error">{this.props.message}</Alert>
+          <Alert severity="error" onClose={() => this.props.handleClose()}>
+            {this.props.message}
+          </Alert>
         </Snackbar>
       </div>
     );

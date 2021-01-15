@@ -42,6 +42,7 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
           <ErrorDisplay
             isOpen={this.state.isConnectionError}
             message="Failed to connect to the database"
+            handleClose={this.closeError}
           ></ErrorDisplay>
         </Container>
       </div>
@@ -64,5 +65,9 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
       .catch((err) => {
         this.setState({ tweetList: [], isConnectionError: true });
       });
+  };
+
+  closeError = () => {
+    this.setState({ isConnectionError: false });
   };
 }
