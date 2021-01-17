@@ -9,7 +9,7 @@ type TweetProps = {
 export class Tweet extends React.Component<TweetProps> {
   render() {
     return (
-      <div>
+      <div className="tweet">
         <div>{this.props.tweet.comment}</div>
         <div className="created-at">
           {this.props.tweet.createdAt.toLocaleString()}
