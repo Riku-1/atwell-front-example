@@ -12,7 +12,9 @@ export class Tweet extends React.Component<TweetProps> {
       <div className="tweet">
         <div>{this.props.tweet.comment}</div>
         <div className="created-at">
-          {this.props.tweet.createdAt.toLocaleString()}
+          {this.props.tweet.createdAt.toLocaleString("jst", {
+            timeZone: "UTC",
+          })}
         </div>
       </div>
     );
