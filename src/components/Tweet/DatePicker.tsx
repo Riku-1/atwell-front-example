@@ -1,6 +1,7 @@
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import React from "react";
 import { formatDate } from "../../utils/formatter";
+import "./DatePicker.css";
 
 type DatePickerProps = {
   start: Date;
@@ -13,7 +14,7 @@ type DatePickerProps = {
 export class DatePicker extends React.Component<DatePickerProps> {
   render() {
     return (
-      <div>
+      <div className="date-picker">
         <form className="test" noValidate>
           <TextField
             id="start"
@@ -39,14 +40,18 @@ export class DatePicker extends React.Component<DatePickerProps> {
               shrink: true,
             }}
           />
-          <button
-            onClick={() => {
-              this.props.onClick(this.props.start, this.props.end);
-            }}
-            type="button"
-          >
-            update
-          </button>
+          <div className="update-button">
+            <Button
+              onClick={() => {
+                this.props.onClick(this.props.start, this.props.end);
+              }}
+              type="button"
+              variant="outlined"
+              size="small"
+            >
+              update
+            </Button>
+          </div>
         </form>
       </div>
     );

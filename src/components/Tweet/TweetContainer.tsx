@@ -5,6 +5,7 @@ import { Tweet } from "../../domain/tweet";
 import { DatePicker } from "./DatePicker";
 import { ErrorDisplay } from "../common/ErrorDisplay";
 import { TweetDisplay } from "./TweetDisplay";
+import "./TweetContainer.css";
 
 type TweetContainerState = {
   start: Date;
@@ -30,7 +31,7 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
   render() {
     return (
       <div>
-        <Container maxWidth="md">
+        <Container maxWidth="md" className="tweet-container">
           <DatePicker
             start={this.state.start}
             end={this.state.end}
