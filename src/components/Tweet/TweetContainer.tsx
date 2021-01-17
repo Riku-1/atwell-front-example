@@ -7,6 +7,8 @@ import { ErrorDisplay } from "../common/ErrorDisplay";
 import { TweetDisplay } from "./TweetDisplay";
 import "./TweetContainer.css";
 
+const FIRST_START_TIME = "2021-01-01";
+
 type TweetContainerState = {
   start: Date;
   end: Date;
@@ -18,7 +20,7 @@ export class TweetContainer extends React.Component<{}, TweetContainerState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      start: new Date(),
+      start: new Date(FIRST_START_TIME),
       end: new Date(),
       tweetList: [],
       isConnectionError: false,
