@@ -1,4 +1,4 @@
-# twitter-alone-front
+# atwell-front-example
 
 ## Usage
 
