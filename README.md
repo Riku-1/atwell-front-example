@@ -8,8 +8,8 @@
    If you test at local, use following command.
 
    ```shell
-   export REACT_APP_BACKEND_HOST=http://localhost // your backend host
-   export REACT_APP_BACKEND_PORT=10000 // your backend port
+   export REACT_APP_BACKEND_HOST=http://localhost # your backend host
+   export REACT_APP_BACKEND_PORT=10000 # your backend port
    ```
 
 2. Launch
